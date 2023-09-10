@@ -1,6 +1,6 @@
 # api
 
-## How to start
+## How to start server
 
 ### On Local Computer
 
