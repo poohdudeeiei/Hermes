@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    api:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - 3000:3000
+        volumes:
+            - ./:/usr/src/app
+
+    database:
+        image: mongo
+        restart: always
+        ports:
+            - 27017:27017
+        volumes:
+            - db:/data/db
+
+volumes:
+    db:
