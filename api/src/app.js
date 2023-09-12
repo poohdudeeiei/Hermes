@@ -7,8 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./authorization/auth.rout');
+const connectDatabase = require('./config/mongodb.config');
 
 var app = express();
+
+// connect to database
+connectDatabase();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
