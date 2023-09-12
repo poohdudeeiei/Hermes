@@ -1,27 +1,50 @@
-# React + TypeScript + Vite
+# Frontend Document
+Project name: HermesCS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Feature: Chat web application which has 2 types of chat
 
-Currently, two official plugins are available:
+**Connector** : private chat for exactly 2 people. To create connector chat, two users must *CONNECT* together.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Connect: User must give other users a user's OPEN ID to chat with them. (Adding friend by giving ad ID)
 
-## Expanding the ESLint configuration
+**Group** : group chat for more than 2 people. To create group chat, user who is creating group can add ID of group member without needing connect each other. But must adding more than 1 person except of group creator.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This project supports text and image message. (Which image will encode to b64)
 
-- Configure the top-level `parserOptions` property like this:
+Requirements of user
+- To use web app, user must be login.
+- Naming a username when registering, name must be unique.
+  
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Stack
+- React
+- Typescript
+- Tailwind
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Layout Design
+Three tiers of devices
+- Large device (PC, Laptop) (>=1024px)
+- Middle device (Tablet) (>= 768px);
+- Small device (Smartphone) (<768px)
+
+Main three display page
+- Login page
+- Register page
+- Chat main page
+## Component breakdown (Chat main page)
+- Sidebar (hidden on small screen)
+  - Brand display
+  - Search bar
+  - Filter list
+  - Connector and group list
+  - Settings
+    - Change name
+    - Logout
+
+- Main chat
+  - Chat header
+  - Chat box
+  - Text box
+  - 
+- Chat settings (hidden on small screen)
+  - Wating for features
