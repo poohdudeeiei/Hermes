@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <div className="flex h-screen">
-        <Sidebar />
+        <Sidebar></Sidebar>
         <Outlet />
       </div>
     ),
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       {
         path: ":chatId",
         element: <ChatInterface />,
-      },
+      }
     ],
   },
   {

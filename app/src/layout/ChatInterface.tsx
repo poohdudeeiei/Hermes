@@ -1,6 +1,6 @@
-import ChatHeader from "../components/ChatHeader";
-import ChatBox from "../components/ChatBox";
-import TextBox from "../components/TextBox";
+import ChatHeader from "../components/Chat/ChatHeader";
+import ChatBox from "../components/Chat/ChatBox";
+import TextBox from "../components/Chat/TextBox";
 import { useState } from "react";
 
 function ChatInterface() {

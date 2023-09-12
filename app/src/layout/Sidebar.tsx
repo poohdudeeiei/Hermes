@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Brand from "../components/Brand";
-import ConnectorList from "../components/ConnectorList/ConnectorList";
-import SearchBar from "../components/Searchbar";
+import Brand from "../components/Util/Brand";
+import ConnectorList from "../components/Connector/ConnectorList";
+import SearchBar from "../components/Util/Searchbar";
 
 function Sidebar() {
   const [isMainSettingsOpen, setIsMainSettingsOpen] = useState(false);
@@ -14,17 +14,41 @@ function Sidebar() {
   };
 
   return (
-    <div className="grow-0 shrink-0 w-80 h-screen border-r relative">
+    <div className="grow-0 shrink-0 w-96 h-screen border-r relative">
       <div>
         <Brand />
-        <div className="px-6 py-3 flex justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-violet-400"></div>
-            <p className="font-bold">Saksit Sirisakda</p>
+        <div className="px-6 py-3">
+          <SearchBar />
+          <div className="flex gap-3">
+              <button className="px-4 py-2 rounded-full bg-blue-100 text-sm font-semibold text-blue-600">
+                All
+              </button>
+              <button className="px-4 py-2 rounded-full text-sm font-semibold">
+                Connector
+              </button>
+              <button className="px-4 py-2 rounded-full text-sm font-semibold">
+                Group
+              </button>
           </div>
+        </div>
+        <div
+          className="overflow-y-auto"
+          style={{ height: "calc( 100vh - 248px )" }}
+        >
+          <ConnectorList />
+        </div>
+      </div>
+      <div
+        className={`h-full ${
+          isMainSettingsOpen
+            ? "w-full visible left-0"
+            : "w-0 invisible -left-full"
+        } bg-white top-0 absolute min-h-0 transition-all p-4 duration-300`}
+      >
+        <div className="flex flex-col gap-3">
           <button
-            onClick={openMainSettingsOpen}
-            className="p-2 hover:bg-gray-100 rounded-full"
+            onClick={closeMainSettingsOpen}
+            className="p-3 hover:bg-gray-100 rounded-full self-start"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -37,57 +61,76 @@ function Sidebar() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
               />
             </svg>
           </button>
-        </div>
-        <div className="px-6 py-3">
-          <SearchBar />
-          <div className="flex gap-3">
-            <button className="px-4 py-2 rounded-full bg-blue-100 text-sm font-semibold text-blue-600">
-              Connector
-            </button>
-            <button className="px-4 py-2 rounded-full text-sm font-semibold">
-              Group
-            </button>
+          <div className="flex flex-col gap-4 justify-center items-center">
+            <div className="w-24 h-24 bg-gray-200 rounded-full self-center"></div>
+            <p className="text-2xl font-bold">Edogawa Conan</p>
+            <p className="text-xs text-gray-500">#1245658</p>
           </div>
-        </div>
-        <div
-          className="overflow-y-auto"
-          style={{ height: "calc( 100vh - 232px )" }}
-        >
-          <ConnectorList />
+          <button className="flex items-center gap-4 font-bold p-2 rounded-xl hover:bg-gray-100">
+            <span className="p-2 bg-gray-200 rounded-lg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </span>
+            Change name
+          </button>
+          <button className="flex items-center gap-4 font-bold p-2 rounded-xl hover:bg-gray-100">
+            <span className="p-2 bg-gray-200 rounded-lg">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6"
+              >
+                <path
+                  d="M16.8 2H14.2C11 2 9 4 9 7.2V11.25H15.25C15.66 11.25 16 11.59 16 12C16 12.41 15.66 12.75 15.25 12.75H9V16.8C9 20 11 22 14.2 22H16.79C19.99 22 21.99 20 21.99 16.8V7.2C22 4 20 2 16.8 2Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M4.56141 11.2498L6.63141 9.17984C6.78141 9.02984 6.85141 8.83984 6.85141 8.64984C6.85141 8.45984 6.78141 8.25984 6.63141 8.11984C6.34141 7.82984 5.86141 7.82984 5.57141 8.11984L2.22141 11.4698C1.93141 11.7598 1.93141 12.2398 2.22141 12.5298L5.57141 15.8798C5.86141 16.1698 6.34141 16.1698 6.63141 15.8798C6.92141 15.5898 6.92141 15.1098 6.63141 14.8198L4.56141 12.7498H9.00141V11.2498H4.56141Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+            Logout
+          </button>
         </div>
       </div>
-      <div
-        className={`h-full ${
-          isMainSettingsOpen ? "w-full visble" : "w-0 invisible"
-        } bg-white top-0 left-0 absolute min-h-0 transition-all`}
-      >
-        <div className="">
-          <button onClick={closeMainSettingsOpen}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+      <div className="px-6 py-3 flex justify-between items-center gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-full bg-gray-200"></div>
+          <p className="font-bold">Saksit Sirisakda</p>
         </div>
+        <button
+          onClick={openMainSettingsOpen}
+          className="p-2 hover:bg-gray-100 rounded-full"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.828 2.25c-.916 0-1.699.663-1.85 1.567l-.091.549a.798.798 0 01-.517.608 7.45 7.45 0 00-.478.198.798.798 0 01-.796-.064l-.453-.324a1.875 1.875 0 00-2.416.2l-.243.243a1.875 1.875 0 00-.2 2.416l.324.453a.798.798 0 01.064.796 7.448 7.448 0 00-.198.478.798.798 0 01-.608.517l-.55.092a1.875 1.875 0 00-1.566 1.849v.344c0 .916.663 1.699 1.567 1.85l.549.091c.281.047.508.25.608.517.06.162.127.321.198.478a.798.798 0 01-.064.796l-.324.453a1.875 1.875 0 00.2 2.416l.243.243c.648.648 1.67.733 2.416.2l.453-.324a.798.798 0 01.796-.064c.157.071.316.137.478.198.267.1.47.327.517.608l.092.55c.15.903.932 1.566 1.849 1.566h.344c.916 0 1.699-.663 1.85-1.567l.091-.549a.798.798 0 01.517-.608 7.52 7.52 0 00.478-.198.798.798 0 01.796.064l.453.324a1.875 1.875 0 002.416-.2l.243-.243c.648-.648.733-1.67.2-2.416l-.324-.453a.798.798 0 01-.064-.796c.071-.157.137-.316.198-.478.1-.267.327-.47.608-.517l.55-.091a1.875 1.875 0 001.566-1.85v-.344c0-.916-.663-1.699-1.567-1.85l-.549-.091a.798.798 0 01-.608-.517 7.507 7.507 0 00-.198-.478.798.798 0 01.064-.796l.324-.453a1.875 1.875 0 00-.2-2.416l-.243-.243a1.875 1.875 0 00-2.416-.2l-.453.324a.798.798 0 01-.796.064 7.462 7.462 0 00-.478-.198.798.798 0 01-.517-.608l-.091-.55a1.875 1.875 0 00-1.85-1.566h-.344zM12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   );

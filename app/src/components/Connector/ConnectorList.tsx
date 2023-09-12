@@ -1,4 +1,4 @@
-import Connector from "../Connector/Connector";
+import Connector from "./Connector";
 
 function ConnectorList() {
   return (
