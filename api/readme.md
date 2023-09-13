@@ -103,18 +103,19 @@ If you change or install new npm packages or change docker file you can run `doc
 ```Javascript
 // Attach Header Authorization: Bearer [jwt]
 
-On send
+On message:send
 // Get sended message from client
 data = {
     chatId:"string",
     chatContent:{}
 }
 
-Emit resived
+Emit message
 // Boadcast message to dest client
 data={
     chatId:"string",
     sender:"string",
+    timestamp:Date.now(),
     chatContent:{}
 }
 ```
