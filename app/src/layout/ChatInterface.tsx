@@ -1,7 +1,7 @@
 import ChatHeader from "../components/Chat/ChatHeader";
 import ChatBox from "../components/Chat/ChatBox";
 import TextBox from "../components/Chat/TextBox";
-import RightBar from "./RightBar/RightBar";
+import RightBar from "./ChatSettings/ChatSettings";
 import { useState } from "react";
 
 function ChatInterface() {
