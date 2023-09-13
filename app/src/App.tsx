@@ -8,7 +8,7 @@ import ChatInterface from "./layout/ChatInterface";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import Plain from "./pages/Plain";
-import Sidebar from "./layout/Sidebar";
+import Sidebar from "./layout/Sidebar/Sidebar";
 
 const router = createBrowserRouter([
   {
