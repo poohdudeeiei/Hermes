@@ -4,7 +4,7 @@
 import "./App.css";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import ChatInterface from "./layout/ChatInterface";
+import ChatInterface from "./layout/ChatInterface/ChatInterface";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import Plain from "./pages/Plain";
