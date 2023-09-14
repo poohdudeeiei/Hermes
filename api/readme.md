@@ -79,6 +79,18 @@ If you change or install new npm packages or change docker file you can run `doc
 }
 ```
 
+- `GET` /profile
+
+```JSONC
+// Attach Header Authorization: Bearer [jwt]
+{
+    "userid": "string",
+    "username": "string",
+    "avatar": "string-b64url",
+    "displayName": "string"
+}
+```
+
 ### Chat
 
 - `GET` /chat/contacts
