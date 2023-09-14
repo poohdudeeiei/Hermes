@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./authorization/auth.rout');
 var profileRouter = require('./features/profiles/profile.route');
+var chatRouter = require('./features/chats/chat.route');
 
 const connectDatabase = require('./config/mongodb.config');
 
@@ -30,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/account', registerRouter);
 app.use('/profile', profileRouter);
+app.use('/chat', chatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
