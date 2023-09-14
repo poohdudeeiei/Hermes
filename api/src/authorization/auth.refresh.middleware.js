@@ -3,13 +3,12 @@ require("dotenv").config()
 const jwt = require("jsonwebtoken")
 
 /**
- * @typedef {Object} AuthorizationHeader
+ * @typedef {Object} ValidateRefreshTokenHeader
  * @property {string} authorization
  */
 
-
-const authGuard = async (req, res, next) => {
-    /** @type {AuthorizationHeader} */
+const jwtRefreshTokenValidate = async (req, res, next) => {
+    /** @type {ValidateRefreshTokenHeader} */
     const header = req.headers;
     if (!header.authorization) {
         return res.status(HTTP_STATUS.FORBIDDEN).json({
@@ -17,41 +16,43 @@ const authGuard = async (req, res, next) => {
             msg: "Attach token to authentication header."
         });
     }
-    await verifyToken(header.authorization).then((isvalid) => {
-        if (!isvalid) {
+    await verifyRefreshToken(header.authorization).then((check) => {
+        if (!check.isvalid) {
             return res.status(HTTP_STATUS.TOKEN_EXPIRED_INVALID).json({
                 error: "Token is not valid.",
                 msg: "refresh your token."
             })
         } else {
+            req.user = jwt.decode(check.token)
+            req.user.token = check.token
+            delete req.user.exp
+            delete req.user.iat
             next();
         }
-    }).catch(err => {
-        throw new Error(err)
     })
+
 }
 
 /**
  *
  * @param {string} requestheader
- *  @returns {Promise}
+ * @returns {Promise}
  */
 
-const verifyToken = async (requestheader) => {
-    //TODO: verify jwt
+const verifyRefreshToken = async (requesttoken) => {
+    //TODO: verify refreshjwt
     return new Promise((resolve, reject) => {
-        console.warn('bypassing token validation : ' + requestheader);
-        const token = requestheader.replace("Bearer ", "")
+        console.warn('bypassing refresh token validation : ' + requesttoken);
+        const token = requesttoken.replace("Bearer ", "")
 
-        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
             if (err) {
                 resolve(false)
             } else {
-                resolve(true)
+                resolve({ isvalid: true, token: token })
             }
         })
     })
 }
 
-
-module.exports = authGuard;
+module.exports = jwtRefreshTokenValidate
