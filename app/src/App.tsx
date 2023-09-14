@@ -4,11 +4,11 @@
 import "./App.css";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import ChatInterface from "./layout/ChatInterface";
+import ChatInterface from "./layout/ChatInterface/ChatInterface";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import Plain from "./pages/Plain";
-import Sidebar from "./layout/Sidebar";
+import Sidebar from "./layout/Sidebar/Sidebar";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +41,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
     <>
       <RouterProvider router={router} />

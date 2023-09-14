@@ -5,3 +5,9 @@
 body {
  @apply text-gray-900
 }
+
+input[type="search"],
+input[type="text"],
+textarea {
+    @apply outline-0 ring-gray-300 focus:ring-4
+}
