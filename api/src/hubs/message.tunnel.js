@@ -46,10 +46,12 @@ function addOnMessageHandler(socket){
             chatID: context.chatId,
             sendTime: Date.now()
         };
-        const result = await saveMessageToDb(message)
+        saveMessageToDb(message)
+            .then(result=>{
+                message.messageID = result.result._id;
+                sendMessageTo(result.chatMembers,message);
+            })
             .catch(saveMessageErrorHandeler(socket));
-        message.messageID = result.result._id;
-        sendMessageTo(result.chatMembers,message);
     });
 };
 
