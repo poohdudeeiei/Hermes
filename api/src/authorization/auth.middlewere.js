@@ -1,4 +1,5 @@
 const HTTP_STATUS = require("../core/value-object");
+const { virifyToken } = require("../services/token.service");
 
 /**
  * @typedef {Object} AuthorizationHeader
@@ -6,7 +7,7 @@ const HTTP_STATUS = require("../core/value-object");
  */
 
 
-const authGuard = (req, res, next) => {
+const authGuard = async (req, res, next) => {
     /** @type {AuthorizationHeader} */
     const header = req.headers;
     if (!header.authorization)
@@ -14,19 +15,17 @@ const authGuard = (req, res, next) => {
             error: "Can not get Token.",
             msg: "Attach token to authentication header."
         });
-    if(!verifyToken(header.authorization, id=>req.sub=id ))
+
+    const tokeninfo = await virifyToken(header.authorization);
+    if(!tokeninfo.id)
         return res.status(HTTP_STATUS.TOKEN_EXPIRED_INVALID).json({
             error:"Token is not valid.",
             msg: "refresh your token."
-        })
-    next();
-}
-
-function verifyToken(token, callback) {
-    //TODO: verify jwt
-    console.warn('bypassing token validation : ' + token);
-    callback("claim id");
-    return true;
+        });
+    else {
+        req.sub = tokeninfo.id;
+        next();
+    }
 }
 
 module.exports = authGuard;
