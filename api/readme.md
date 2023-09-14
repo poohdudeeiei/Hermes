@@ -30,8 +30,6 @@ docker-compose up
 
 If you change or install new npm packages or change docker file you can run `docker-compose up -d --no-deps --build <service name | let it empty>` to rebuild docker
 
-
-
 ## APIs design
 
 ### Authentication
@@ -110,7 +108,7 @@ If you change or install new npm packages or change docker file you can run `doc
 ]
 ```
 
-- `WS` /chat/:id
+- `WS` /chat
 
 ```Javascript
 // Attach Header Authorization: Bearer [jwt]
@@ -126,6 +124,7 @@ Emit message
 // Boadcast message to dest client
 data={
     chatId:"string",
+    messageId:"string",
     sender:"string",
     timestamp:Date.now(),
     chatContent:{}

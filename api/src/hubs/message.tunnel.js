@@ -21,6 +21,11 @@ const authGuard = require("./auth.guard");
 * @property {Date} sendTime
 * @property {Object} content
 */
+/**
+* @typedef {Object} SavedMessageResult
+* @property {Array<String>} chatMembers
+* @property {Object} result
+*/
 
 var nsp;
 
@@ -41,9 +46,10 @@ function addOnMessageHandler(socket){
             chatID: context.chatId,
             sendTime: Date.now()
         };
-        const contacts = await saveMessageToDb(message)
+        const result = await saveMessageToDb(message)
             .catch(saveMessageErrorHandeler(socket));
-        sendMessageTo(contacts,message);
+        message.messageID = result.result._id;
+        sendMessageTo(result.chatMembers,message);
     });
 };
 
@@ -61,7 +67,7 @@ function joinAuthRoom(socket) {
 
 /**
  * @param {messageDbSchema} context context to save on database
- * @returns {Promise<Array<string>>} list of chat members
+ * @returns {Promise<SavedMessageResult>} list of chat members
  */
 function saveMessageToDb(context) {
     return new Promise(async (resolve, reject) => {
@@ -75,7 +81,10 @@ function saveMessageToDb(context) {
         else {
             const msg = new MessageDao(context);
             await msg.save()
-                .then(() => resolve(chatmembers))
+                .then( r => resolve(/** @type {SavedMessageResult} */{
+                   chatMembers: chatmembers,
+                   result: r
+                }))
                 .catch(e => reject(e));
         };
     });
