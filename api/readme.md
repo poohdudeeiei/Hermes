@@ -108,6 +108,29 @@ If you change or install new npm packages or change docker file you can run `doc
 ]
 ```
 
+- `GET` /chat/histories
+
+pagenation query chat history
+
+```javascript
+// Attach Header Authorization: Bearer [jwt]
+// Params
+- ref=[messageID | chatID] to load more chat before ref message
+// ex. /chat?ref=messageID mean load chat history before ref message
+
+// Response
+[
+    {
+        chatId:"string",
+        messageId:"string",
+        sender:"string",
+        timestamp:Date.now(),
+        chatContent:{}
+    }
+]
+
+```
+
 - `WS` /chat
 
 ```Javascript
@@ -188,3 +211,12 @@ data={
 ```
 
 </details>
+
+### Error response
+
+```typescript
+response : {
+    error: string,
+    msg: string
+}
+```
