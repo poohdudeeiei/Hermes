@@ -1,12 +1,25 @@
+import { useRef } from "react";
+import { socket } from "../../socket";
+
 function TextBox() {
+    const inputElement = useRef<HTMLInputElement>(null);
+
+    const sendMessage = () => {
+        if (inputElement.current) {
+            const msg = inputElement.current.value;
+            if (!msg.length) return;
+            socket.emit("message:send", msg);
+        }
+    };
     return (
         <div className="border-t px-6 py-3 flex items-center gap-4 h-16">
             <input
+                ref={inputElement}
                 type="text"
                 placeholder="Aa"
                 className="border rounded-full grow px-4 py-2"
             ></input>
-            <button className="p-2 text-sky-500 rounded-full hover:bg-sky-200">
+            <button onClick={sendMessage} className="p-2 text-sky-500 rounded-full hover:bg-sky-200">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

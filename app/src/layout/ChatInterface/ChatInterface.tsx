@@ -3,8 +3,11 @@ import ChatBox from "../../components/Chat/ChatBox";
 import TextBox from "../../components/Chat/TextBox";
 import ChatSettings from "../ChatSettings/ChatSettings";
 import { useState } from "react";
+import { useLoaderData } from "react-router";
+import { ChatHistory } from "../../models/chat-history";
 
 function ChatInterface() {
+    const chatHistory = useLoaderData() as ChatHistory[]
     const [isChatSettingsOpen, setIsChatSettingsOpen] = useState(false);
 
     const handleSettingsDisplay = (isOpen: boolean) => {
@@ -18,7 +21,7 @@ function ChatInterface() {
                     className="relative"
                     style={{ height: `calc( 100vh - 136px)` }}
                 >
-                    <ChatBox />
+                    <ChatBox data={chatHistory} />
                 </div>
                 <TextBox />
             </div>
