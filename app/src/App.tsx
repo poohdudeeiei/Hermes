@@ -27,10 +27,14 @@ const router = createBrowserRouter([
             },
             {
                 path: ":chatId",
-                loader: ({ params }) =>
-                    mockHistory.filter(
+                loader: ({ params }) => ({
+                    contact: mockContact.find(
+                        (contact) => contact.chatID === params.chatId
+                    ),
+                    history: mockHistory.filter(
                         (message) => message.chatId === params.chatId
                     ),
+                }),
                 element: <ChatInterface />,
             },
         ],
@@ -75,4 +79,3 @@ function App() {
 }
 
 export default App;
-

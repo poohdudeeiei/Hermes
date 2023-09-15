@@ -1,8 +1,7 @@
-import classNames from "classnames";
 import { NavLink } from "react-router-dom";
-import "./Connector.css";
-import { ChatContact } from "../../models/chat-contact";
-// import { useState } from "react";
+import "./ChatContact.css";
+import { ChatContact } from "../../../models/chat-contact";
+import { getUserInfoById, mockMe } from "../../../mockData";
 
 interface ConnectorProps {
     data: ChatContact;
@@ -21,14 +20,13 @@ function Connector({ data }: ConnectorProps) {
                     <div className="w-14 h-14 rounded-full bg-gray-200"></div>
                     <div>
                         <p className="font-bold">{data.chatName}</p>
-                        <p
-                            className={classNames({
-                                "text-gray-700": true,
-                                "text-sm": true,
-                                "font-bold": false,
-                            })}
-                        >
-                            {`${data.lastMassage.senderID}: ${data.lastMassage.content.data}`}
+                        <p className={`text-gray-700 text-sm`}>
+                            {`${
+                                data.lastMassage.senderID === mockMe._id
+                                    ? "Me"
+                                    : getUserInfoById(data.lastMassage.senderID)
+                                          ?.displayName
+                            } : ${data.lastMassage.content.data}`}
                         </p>
                     </div>
                 </div>

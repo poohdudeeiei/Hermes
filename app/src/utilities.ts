@@ -9,11 +9,19 @@ export const displayDate = (date: Date) => {
 
     if (today.getFullYear() === yyyy) {
         if (today.getDate() === dd) {
-            return [hh, mn].join(":");
+            return [hh, mn.toString().padStart(2, "0")].join(":");
         } else {
-            return [dd, mm].join("/") + "-" + [hh, mn].join(":");
+            return (
+                [dd, mm].join("/") +
+                "-" +
+                [hh, mn.toString().padStart(2, "0")].join(":")
+            );
         }
     } else {
-        return [dd, mm, yyyy].join("/") + "-" + [hh, mn].join(":");
+        return (
+            [dd, mm, yyyy].join("/") +
+            "-" +
+            [hh, mn.toString().padStart(2, "0")].join(":")
+        );
     }
 };

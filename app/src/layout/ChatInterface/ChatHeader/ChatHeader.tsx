@@ -1,11 +1,13 @@
 import { useState } from "react";
-import OnlineBadge from "../DotBadge";
+import OnlineBadge from "../../../components/DotBadge";
+import { ChatContact } from "../../../models/chat-contact";
 
 interface ChatHeaderProps {
+    forContact: ChatContact;
     settings: (isOpen: boolean) => void;
 }
 
-function ChatHeader({ settings }: ChatHeaderProps) {
+function ChatHeader({ forContact, settings }: ChatHeaderProps) {
     const [openStatus, setOpenStatus] = useState(true);
 
     const onClickSettings = () => {
@@ -25,7 +27,7 @@ function ChatHeader({ settings }: ChatHeaderProps) {
                     </div>
                 </div>
                 <div>
-                    <p className="text-xl font-bold">John Smith</p>
+                    <p className="text-xl font-bold">{forContact.chatName}</p>
                     <p className="text-xs">Online</p>
                 </div>
             </div>
