@@ -1,17 +1,21 @@
+import { mockMe } from "../../../mockData";
+
 interface OwnerPanelProps {
     emitOpenEvent: () => void;
 }
 
-function OwnerPanel({emitOpenEvent}: OwnerPanelProps) {
+function OwnerPanel({ emitOpenEvent }: OwnerPanelProps) {
     const openMainSettings = () => {
         emitOpenEvent();
-    }
+    };
+
+    const myInfo = mockMe;
 
     return (
         <div className="px-6 py-3 flex justify-between items-center gap-4">
             <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-gray-200"></div>
-                <p className="font-bold">Saksit Sirisakda</p>
+                <p className="font-bold">{myInfo.displayName}</p>
             </div>
             <button
                 onClick={openMainSettings}

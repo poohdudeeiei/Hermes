@@ -1,14 +1,19 @@
 import { useState } from "react";
-import Brand from "../../components/Util/Brand";
-import ConnectorList from "../../components/Connector/ConnectorList";
-import SearchBar from "../../components/Util/Searchbar";
-import ConnectorFilter from "./ConnectorFilter";
-import MainSettings from "./MainSettings";
-import OwnerPanel from "./OwnerPanel";
+import Brand from "./Brand/Brand";
+import ChatContactList from "./ChatContact/ChatContactList";
+import SearchBar from "./Searchbar/Searchbar";
+import ConnectorFilter from "./ChatContactFilter/ConnectorFilter";
+import MainSettings from "./MainSettings/MainSettings";
+import OwnerPanel from "./OwnerPanel/OwnerPanel";
 import AddConnector from "./AddConnector/AddConnector";
+import { useLoaderData } from "react-router-dom";
+import { ChatContact } from "../../models/chat-contact";
 
 function Sidebar() {
     const [isMainSettingsOpen, setIsMainSettingsOpen] = useState(false);
+    const loadedChats = useLoaderData() as ChatContact[];
+
+    const [chats, setChats] = useState(loadedChats)
 
     const openMainSettings = () => {
         setIsMainSettingsOpen(!isMainSettingsOpen);
@@ -34,7 +39,7 @@ function Sidebar() {
                     className="overflow-y-auto"
                     style={{ height: "calc( 100vh - 256px )" }}
                 >
-                    <ConnectorList />
+                    <ChatContactList chats={chats} />
                 </div>
             </div>
             <MainSettings openStatus={isMainSettingsOpen} emitCloseEvent={closeMainSettings} />

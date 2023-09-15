@@ -1,3 +1,5 @@
+import { mockMe } from "../../../mockData";
+
 interface MainSettingsProps {
     openStatus: boolean;
     emitCloseEvent: () => void;
@@ -7,6 +9,7 @@ function MainSettings({ openStatus, emitCloseEvent }: MainSettingsProps) {
     const closeMainSettings = () => {
         emitCloseEvent();
     };
+
     return (
         <div
             className={` ${
@@ -24,8 +27,8 @@ function MainSettings({ openStatus, emitCloseEvent }: MainSettingsProps) {
                 </button>
                 <div className="flex flex-col gap-4 justify-center items-center">
                     <div className="w-24 h-24 bg-gray-200 rounded-full self-center"></div>
-                    <p className="text-2xl font-bold">Edogawa Conan</p>
-                    <p className="text-xs text-gray-500">#1245658</p>
+                    <p className="text-2xl font-bold">{mockMe.displayName}</p>
+                    <p className="text-xs text-gray-500">{mockMe._id}</p>
                 </div>
                 <button className="flex items-center gap-4 font-bold p-2 rounded-xl hover:bg-gray-100">
                     <span className="p-2 bg-gray-200 rounded-lg">

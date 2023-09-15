@@ -1,6 +1,6 @@
-import { ChatHistory } from "../../models/chat-history";
-import { MessageType } from "../../models/message";
-import { displayDate } from "../../utilities";
+import { ChatHistory } from "../models/chat-history";
+import { MessageType } from "../models/message";
+import { displayDate } from "../utilities";
 
 interface MessageProps {
     isSelf: boolean;

@@ -4,49 +4,96 @@ import { ChatHistory } from "./models/chat-history";
 import { MessageType } from "./models/message";
 import { User } from "./models/user";
 
+export const mockMe: User = {
+    _id: "0",
+    avatar: "",
+    displayName: "Adam",
+};
+
 export const mockUser: User[] = [
     {
+        _id: "0",
+        avatar: "",
+        displayName: "Adam",
+    },
+    {
         _id: "1",
-        avatar: '',
-        displayName: 'Dextra',
+        avatar: "",
+        displayName: "Bobby",
     },
     {
         _id: "2",
-        avatar: '',
-        displayName: 'Sinestrea'
-    }
-]
+        avatar: "",
+        displayName: "Chris",
+    },
+    {
+        _id: "3",
+        avatar: "",
+        displayName: "Dan",
+    },
+    {
+        _id: "4",
+        avatar: "",
+        displayName: "Evan",
+    },
+    {
+        _id: "5",
+        avatar: "",
+        displayName: "Frank",
+    },
+    {
+        _id: "6",
+        avatar: "",
+        displayName: "Gordon",
+    },
+];
 
 export const mockContact: ChatContact[] = [
     {
-        chatID: "123",
-        chatName: "Sinestrea",
-        type: ChatType.GROUP,
-        colour: "red",
+        chatID: "c1",
+        chatName: "Bobby",
+        type: ChatType.PRIVATE,
+        colour: "",
         image: "",
         lastMassage: {
-            chatID: "123",
+            chatID: "c1",
             content: {
                 type: MessageType.TEXT,
-                data: "I love Dextra",
+                data: "I want to go to eat something",
             },
-            senderID: "2",
+            senderID: "1",
             sendTime: new Date(),
         },
     },
     {
-        chatID: "124",
-        chatName: "Dextra",
-        type: ChatType.CONNECTOR,
-        colour: "blue",
+        chatID: "c2",
+        chatName: "Chris",
+        type: ChatType.PRIVATE,
+        colour: "",
         image: "",
         lastMassage: {
-            chatID: "124",
+            chatID: "c2",
             content: {
                 type: MessageType.TEXT,
-                data: "Sinestra love you",
+                data: "See you tomorrow",
             },
-            senderID: "1",
+            senderID: "0",
+            sendTime: new Date(),
+        },
+    },
+    {
+        chatID: "c3",
+        chatName: "Three Man Right",
+        type: ChatType.GROUP,
+        colour: "",
+        image: "",
+        lastMassage: {
+            chatID: "c3",
+            content: {
+                type: MessageType.TEXT,
+                data: "Send me an answer",
+            },
+            senderID: "3",
             sendTime: new Date(),
         },
     },
@@ -54,33 +101,66 @@ export const mockContact: ChatContact[] = [
 
 export const mockHistory: ChatHistory[] = [
     {
-        chatId: "123",
+        chatId: "c1",
         messageId: "1",
         chatContent: {
             type: MessageType.TEXT,
-            data: "Play game",
-        },
-        sender: "2",
-        timestamp: new Date(),
-    },
-    {
-        chatId: "123",
-        messageId: "2",
-        chatContent: {
-            type: MessageType.TEXT,
-            data: "Play game2",
-        },
-        sender: "2",
-        timestamp: new Date(),
-    },
-    {
-        chatId: "124",
-        messageId: "3",
-        chatContent: {
-            type: MessageType.TEXT,
-            data: "Let started",
+            data: "I want to go to eat something",
         },
         sender: "1",
         timestamp: new Date(),
     },
+    {
+        chatId: "c1",
+        messageId: "2",
+        chatContent: {
+            type: MessageType.TEXT,
+            data: "One plz",
+        },
+        sender: "1",
+        timestamp: new Date(),
+    },
+    {
+        chatId: "c1",
+        messageId: "3",
+        chatContent: {
+            type: MessageType.TEXT,
+            data: "Bobby, do you need some coffee?",
+        },
+        sender: "0",
+        timestamp: new Date(),
+    },
+    {
+        chatId: "c2",
+        messageId: "1",
+        chatContent: {
+            type: MessageType.TEXT,
+            data: "See you tomorrow",
+        },
+        sender: "0",
+        timestamp: new Date(),
+    },
+    {
+        chatId: "c2",
+        messageId: "2",
+        chatContent: {
+            type: MessageType.TEXT,
+            data: "I should go home. See ya",
+        },
+        sender: "1",
+        timestamp: new Date(),
+    },
+    {
+        chatId: "c3",
+        messageId: "1",
+        chatContent: {
+            type: MessageType.TEXT,
+            data: "Send me an answer",
+        },
+        sender: "3",
+        timestamp: new Date(),
+    },
 ];
+
+export const getUserInfoById = (id: string) =>
+    mockUser.find((user) => user._id === id);
