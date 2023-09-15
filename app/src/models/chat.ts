@@ -6,6 +6,6 @@ export interface Chat {
 }
 
 export enum ChatType {
-    CONNECTOR,
+    PRIVATE,
     GROUP
 }

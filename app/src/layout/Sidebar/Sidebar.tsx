@@ -2,10 +2,10 @@ import { useState } from "react";
 import Brand from "../../components/Util/Brand";
 import ConnectorList from "../../components/Connector/ConnectorList";
 import SearchBar from "../../components/Util/Searchbar";
-import AddConnectorButton from "./AddConnectorButton";
 import ConnectorFilter from "./ConnectorFilter";
 import MainSettings from "./MainSettings";
 import OwnerPanel from "./OwnerPanel";
+import AddConnector from "./AddConnector/AddConnector";
 
 function Sidebar() {
     const [isMainSettingsOpen, setIsMainSettingsOpen] = useState(false);
@@ -22,7 +22,7 @@ function Sidebar() {
             <div>
                 <div className="flex items-center justify-between px-6 py-3">
                     <Brand />
-                    <AddConnectorButton />
+                    <AddConnector />
                 </div>
                 <div className="px-6 py-3">
                     <div className="mb-3">
