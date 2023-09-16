@@ -1,6 +1,7 @@
 // import { useState } from "react";
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
+// import AuthContext from "./context/AuthContext";
 import "./App.css";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -44,9 +45,10 @@ function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <>
+    // Context for login
+    // <AuthContext>
       <RouterProvider router={router} />
-    </>
+    // </AuthContext>
   );
 }
 

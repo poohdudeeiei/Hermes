@@ -6,9 +6,10 @@ import { useState } from "react";
 function ChatInterface() {
   const [isChatSettingsOpen, setIsChatSettingsOpen] = useState(false);
 
-  const handleSettingsDisplay = (isOpen: boolean) => {    
+  const handleSettingsDisplay = (isOpen: boolean) => {
     setIsChatSettingsOpen(isOpen);
   };
+
 
   return (
     <div className="flex grow">
@@ -17,7 +18,9 @@ function ChatInterface() {
         <div className="relative" style={{ height: "calc( 100vh - 136px )" }}>
           <ChatBox />
         </div>
+
         <TextBox />
+
       </div>
       <div
         className={`grow-0 shrink-0 h-screen border-l min-h-0 transition-all ${
