@@ -6,10 +6,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var chatRouter = require('./routes/chat')
+var usersProfile = require('./features/users/users-profile.rout');
+var contacts = require('./features/chat-contact/chat-contact.rout')
 var authRouter = require('./authorization/auth.rout');
+var profileRouter = require('./features/profiles/profile.route');
+var chatRouter = require('./features/chats/chat.route');
+
 const connectDatabase = require('./config/mongodb.config');
+const ChatDao = require('./dao/chat.dao');
 
 var app = express();
 
@@ -27,9 +31,31 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "..", 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/profile', usersProfile);
 app.use('/account', authRouter);
-app.use('/chat', chatRouter)
+app.use('/chat', contacts)
+app.use('/profile', profileRouter);
+app.use('/chat', chatRouter);
+
+// GET /tmp to run tmp script for dev
+app.get('/temp', async (req, res) => {
+    const chat_contact = req.body
+    const newchat = new ChatDao(
+        {
+            type: chat_contact.type,
+            members: [
+                { _id: chat_contact.id, joinedTime: Date.now() }
+            ],
+            color: chat_contact.color,
+            image: chat_contact.image
+        }
+    )
+    await newchat.save()
+    res.json({
+        newchat
+    }
+    )
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
