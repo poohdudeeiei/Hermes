@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-require("dotenv").config()
 
 const databaseHost = process.env.MONGO_DB_HOST || "database"
 const databasePort = process.env.MONGO_DB_PORT || "27017"

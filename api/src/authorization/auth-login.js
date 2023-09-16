@@ -1,5 +1,4 @@
 const HTTP_STATUS = require("../core/value-object");
-require("dotenv").config()
 const jwt = require("jsonwebtoken");
 const { createTokenFromUserId } = require("../services/token.service");
 const UserDao = require("../dao/user.dao");
