@@ -4,7 +4,6 @@ var jwtRefreshTokenValidate = require("./auth-refresh")
 var jwt = require("jsonwebtoken");
 const loginEndpoint = require('./auth-login');
 const registerEndpoint = require("./auth-register")
-require("dotenv").config()
 
 /**
  * @typedef {Object} RegisterData

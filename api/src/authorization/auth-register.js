@@ -2,7 +2,6 @@ const UserDao = require("../dao/user.dao");
 const bcrypt = require("bcrypt")
 const HTTP_STATUS = require('../core/value-object');
 const { loadUserFromId } = require("../services/token.service")
-require("dotenv").config()
 
 /**
  * @typedef {object} RegisterData
